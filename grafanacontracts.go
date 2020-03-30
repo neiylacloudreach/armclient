@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"strconv"
 
 	log "github.com/sirupsen/logrus"
 )
@@ -48,7 +49,7 @@ func (dashboard *GrafanaDashboard) update(title string, dataSourceName string, m
 				}
 
 				// For each ARM resource, we will generate new target
-				for _, armResource := range armResources[:upperBound] {
+				for index, armResource := range armResources[:upperBound] {
 					newAzureMonitorTargetJson := copyMap(azureMonitorTargetJson)
 					newAzureMonitorTargetJson["resourceGroup"], _ = armResource.getResourceGroupName()
 
@@ -65,6 +66,7 @@ func (dashboard *GrafanaDashboard) update(title string, dataSourceName string, m
 
 					newTargetJson := copyMap(targetJson)
 					newTargetJson["azureMonitor"] = newAzureMonitorTargetJson
+					newTargetJson["refId"] = strconv.Itoa(index + 1)
 					newTargetsJson = append(newTargetsJson, newTargetJson)
 				}
 
