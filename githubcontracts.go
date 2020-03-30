@@ -23,7 +23,7 @@ type GitHubDashboardTemplate struct {
 }
 
 const (
-	GitHubGrafanaTemplateRootUrl = "https://api.github.com/repos/asheniam/azure-grafana-dashboard-templates/contents/"
+	GitHubGrafanaTemplateRootUrl = "https://api.github.com/repos/neiylacloudreach/azure-grafana-dashboard-templates/contents/"
 )
 
 func getGitHubGrafanaTemplates(resourceType string, resourceKind string, subResourceType string) []GitHubDashboardTemplate {
